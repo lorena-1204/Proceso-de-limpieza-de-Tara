@@ -32,62 +32,61 @@ export default () => {
 <form class="row g-3">
   <div class="col-md-6">
     <label for="inputNombreOperario" class="form-label">Nombre de Operario</label>
-    <input type="text" class="form-control" id="inputNombreOperario" autofocus required>
+    <input type="text" name="inputNombreOperario" class="form-control" id="inputNombreOperario" autofocus required>
   </div>
   <div class="col-md-6">
     <label for="inputCodigoOperario" class="form-label">Código del Operario</label>
-    <input type="text" class="form-control" id="inputCodigoOperario" required>
+    <input type="text" name="inputCodigoOperario" class="form-control" id="inputCodigoOperario" required>
   </div>
-
 
   <div class="col-md-3">
     <label for="inputFecha" class="form-label"> Fecha </label>
-    <input type="date" class="form-control" id="inputFecha" required>
+    <input type="date" name="inputFecha" class="form-control" id="inputFecha" required>
   </div>
   <div class="col-md-3">
     <label for="inputTurno" class="form-label">Turno</label>
-    <select id="inputTurno" class="form-select">
+    <select id="inputTurno" class="form-select" name="inputTurno" >
       <option selected> 1 </option>
       <option> 2 </option>
     </select>
   </div>
   <div class="col-md-3">
     <label for="inputFechaRegistro" class="form-label">Fecha de Registro </label>
-    <input type="date" required class="form-control" id="inputFechaRegistro" required>
+    <input type="date" name="inputFechaRegistro" required class="form-control" id="inputFechaRegistro" required>
   </div>
    <div class="col-md-3">
-    <label for="inputHora" class="form-label">Hore </label>
-    <input type="time" class="form-control" id="inputHora" required>
+    <label for="inputHora" class="form-label">Hora </label>
+    <input type="time" name="inputHora" class="form-control" id="inputHora" required>
   </div>
 
     <div class="col-md-2">
     <label for="inputOrdenFabricacion" class="form-label">N° Orden de fabricación </label>
-    <input type="number" class="form-control" id="inputOrdenFabricacion" required>
+    <input type="number" name ="inputOrdenFabricacion" class="form-control" id="inputOrdenFabricacion" required>
   </div>
   <div class="col-md-2">
     <label for="inputLote" class="form-label">N°Lote de MP</label>
-    <input type="number" class="form-control" id="inputLote" required>
+    <input type="number" name="inputLote"  class="form-control" id="inputLote" required>
   </div>
   <div class="col-md-2">
     <label for="inputCodigoMaterial" class="form-label">Código de material</label>
-    <input type="text" class="form-control" id="inputCodigoMaterial" required>
+    <input type="text" name="inputCodigoMaterial" class="form-control " id="inputCodigoMaterial" required>
   </div>
   <div class="col-md-2">
     <label for="inputDescripcion" class="form-label">Descripción</label>
-    <input type="text" class="form-control" id="inputDescripcion" required>
+    <input type="text"  name="inputDescripcion" class="form-control" id="inputDescripcion" required>
   </div>
   <div class="col-md-2">
     <label for="inputMedida" class="form-label">Unidad de Medida</label>
-    <input type="text" class="form-control" id="inputMedida" required>
+    <input type="text" name="inputMedida" class="form-control" id="inputMedida" required>
   </div>
    <div class="col-md-2">
     <label for="inputKg" class="form-label">KG</label>
-    <input type="number" class="form-control" id="inputKg" required required>
+    <input type="number" name="inputKg" class="form-control" id="inputKg" required required>
   </div>
  
 
   <div class="col-12">
-    <input type="submit" class="btn btn-primary" id="boton" value = " Guardar" />
+    <input type="submit" name="boton" class="btn btn-primary form-control" id="boton" value="Guardar" />
   </div>
 </form>
 </article>
@@ -130,8 +129,9 @@ export default () => {
     const medida = templateInsumo.querySelector("#inputMedida")
     const kilogramos = templateInsumo.querySelector("#inputKg")
 
-    btn.addEventListener('click', (e) => {
-      e.preventDefault()
+  
+    btn.addEventListener('submit', (e) => {
+      e.preventDefault();
         reporte(
             nombre.value,
             inputCodigoOperario.value,
@@ -167,7 +167,7 @@ export default () => {
 
   getreporte((report) => {
     console.log(cuerpoTabla);
-    
+
     console.log('hola');
     cuerpoTabla.innerHTML = '';
     reportTabla(report, cuerpoTabla);

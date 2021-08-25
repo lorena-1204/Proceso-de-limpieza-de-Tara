@@ -76,11 +76,32 @@ export default () => {
     <div class="col-12">
     <button type="button" class="btn btn-primary" id="botonTab" > Guardar </button>
   </div>
-
 </form>
 </article>
 
     </article>
+    <table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Turno</th>
+            <th scope="col">Fecha Registro</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Código Operario</th>
+            <th scope="col">Nombre de Operario</th>
+            <th scope="col">N° Orden de Fabricación</th>
+            <th scope="col">N° Lote de MP</th>
+            <th scope="col">Código de material</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Und. Med.</th>
+            <th scope="col">Kg</th>
+        </tr>
+    </thead>
+    <tbody id="tabla-cuerpo">
+
+    </tbody>
+</table>
+
     `;
   templateProductoFinal.innerHTML = viewProductoFinal;
   const btnTab = templateProductoFinal.querySelector('#botonTab');
