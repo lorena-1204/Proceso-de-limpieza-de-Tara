@@ -1,11 +1,11 @@
-import { resultanteDos } from "../firebase/controller-firestore.js";
+import { getProductos, resultanteDos } from "../firebase/controller-firestore.js";
+import { productoTabla } from "./tab-producto.js";
 
 export default () => {
   const templateProductoFinal = document.createElement('section');
   const viewProductoFinal = `
     <article>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -23,58 +23,55 @@ export default () => {
   </div>
 </nav>
 
-    
-
 <article class="tab">
-<form class="row g-3">
-
+<form id="formulario" class="row g-3>
   <div class="col-md-3">
     <label for="inputFechaTab2" class="form-label"> Fecha </label>
-    <input type="date" class="form-control" id="inputFechaTab2" required>
+    <input type="date" class="form-control" id="inputFechaTab2" autofocus required>
   </div>
   <div class="col-md-3">
     <label for="inputTurnoTab2" class="form-label">Turno</label>
-    <select id="inputTurnoTab2" class="form-select">
+    <select id="inputTurnoTab2" class="form-select" >
       <option selected> 1 </option>
       <option> 2 </option>
     </select>
   </div>
   <div class="col-md-3">
     <label for="inputFechaRegistroTab2" class="form-label">Fecha de Registro </label>
-    <input type="date" class="form-control" id="inputFechaRegistroTab2">
+    <input type="date" class="form-control" id="inputFechaRegistroTab2" required>
   </div>
    <div class="col-md-3">
-    <label for="inputHoraTab2" class="form-label">Hore </label>
-    <input type="time" class="form-control" id="inputHoraTab2">
+    <label for="inputHoraTab2" class="form-label">Hora </label>
+    <input type="time" class="form-control" id="inputHoraTab2" required>
   </div>
 
     <div class="col-md-2">
     <label for="inputOrdenFabricacionTab2" class="form-label">N° Orden de fabricación </label>
-    <input type="number" class="form-control" id="inputOrdenFabricacionTab2">
+    <input type="number" class="form-control" id="inputOrdenFabricacionTab2" required>
   </div>
   <div class="col-md-2">
     <label for="inputLoteTab2" class="form-label">N°Lote de PT</label>
-    <input type="number" class="form-control" id="inputLoteTab2">
+    <input type="number" class="form-control" id="inputLoteTab2" required>
   </div>
   <div class="col-md-2">
     <label for="inputCodigoMaterialTab2" class="form-label">Código de material</label>
-    <input type="text" class="form-control" id="inputCodigoMaterialTab2">
+    <input type="text" class="form-control" id="inputCodigoMaterialTab2" required>
   </div>
   <div class="col-md-2">
     <label for="inputDescripcionTab2" class="form-label">Descripción</label>
-    <input type="text" class="form-control" id="inputDescripcionTab2">
+    <input type="text" class="form-control" id="inputDescripcionTab2" required>
   </div>
   <div class="col-md-2">
     <label for="inputMedidaTab2" class="form-label">Unidad de Medida</label>
-    <input type="text" class="form-control" id="inputMedidaTab2">
+    <input type="text" class="form-control" id="inputMedidaTab2" required>
   </div>
    <div class="col-md-2">
     <label for="inputKgTab2" class="form-label">KG</label>
-    <input type="number" class="form-control" id="inputKgTab2">
+    <input type="number" class="form-control" id="inputKgTab2" required>
   </div>
 
     <div class="col-12">
-    <button type="button" class="btn btn-primary" id="botonTab" > Guardar </button>
+    <input type="submit" name="boton" class="btn btn-primary form-control"  value="Guardar">
   </div>
 </form>
 </article>
@@ -87,27 +84,23 @@ export default () => {
             <th scope="col">Turno</th>
             <th scope="col">Fecha Registro</th>
             <th scope="col">Hora</th>
-            <th scope="col">Código Operario</th>
-            <th scope="col">Nombre de Operario</th>
             <th scope="col">N° Orden de Fabricación</th>
-            <th scope="col">N° Lote de MP</th>
+            <th scope="col">N° Lote de PT</th>
             <th scope="col">Código de material</th>
             <th scope="col">Descripción</th>
             <th scope="col">Und. Med.</th>
             <th scope="col">Kg</th>
         </tr>
     </thead>
-    <tbody id="tabla-cuerpo">
+    <tbody id="tabla-cuerpoProduct">
 
     </tbody>
 </table>
-
     `;
+
   templateProductoFinal.innerHTML = viewProductoFinal;
-  const btnTab = templateProductoFinal.querySelector('#botonTab');
-  // btnTab.addEventListener('click', ()=>{
-  //     console.log(btnTab);
-  // })
+  const formProducto = templateProductoFinal.querySelector("#formulario");
+
 
   const fechaTab2 = templateProductoFinal.querySelector("#inputFechaTab2")
   const turnoTab2 = templateProductoFinal.querySelector("#inputTurnoTab2")
@@ -120,7 +113,8 @@ export default () => {
   const medidaTab2 = templateProductoFinal.querySelector("#inputMedidaTab2")
   const kilogramosTab2 = templateProductoFinal.querySelector("#inputKgTab2")
 
-  btnTab.addEventListener('click', () => {
+  formProducto.addEventListener('submit', (e) => {
+    e.preventDefault();
     resultanteDos(
       fechaTab2.value,
       turnoTab2.value,
@@ -134,8 +128,6 @@ export default () => {
       kilogramosTab2.value,
     );
 
-    console.log('botonTab2');
-
     //limpiar valores 
     fechaTab2.value = '',
       turnoTab2.value = '',
@@ -148,5 +140,15 @@ export default () => {
       medidaTab2.value = '',
       kilogramosTab2.value = ''
   });
+
+  const cuerpoTablaProducto = templateProductoFinal.querySelector('#tabla-cuerpoProduct');
+
+
+  getProductos((productFin) => {
+  
+    productoTabla(productFin, cuerpoTablaProducto);
+    
+  });
+
   return templateProductoFinal;
 };

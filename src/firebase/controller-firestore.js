@@ -17,7 +17,7 @@ export const reporte = (nombre, inputCodigoOperario, fecha, turno, fechaRegistro
 })
 
 //guardar los valores
-export const getreporte = (callback) => {
+export const getReporte = (callback) => {
     const db = firebase.firestore();
     return db.collection('reporteDiario').orderBy('fecha', 'desc')
         // querySnapshot es una colección de post (doc)
@@ -69,9 +69,9 @@ export const resultanteDos = (fechaTab2, turnoTab2, fechaRegistroTab2, horaTab2,
 
 
 //guardar los valores
-export const getproductos = (callback) => {
+export const getProductos = (callback) => {
     const db = firebase.firestore();
-    return db.collection("resultante").orderBy('fecha', 'desc')
+    return db.collection("resultante").orderBy('fechaTab2', 'desc')
 
         .onSnapshot((querySnapshot) => {
             const producto = [];
@@ -81,27 +81,11 @@ export const getproductos = (callback) => {
                     ...doc.data(),
                 });
             });
+           
             callback(producto);
         });
 };
 
-// // Elimina un post
-// export const deleteReporte = (id) => firebase.firestore().collection('reporteDiario').doc(id).delete();
 
-// //editar
-// export const editReporte = (nombre, inputCodigoOperario, fecha, turno, fechaRegistro, hora, ordenFabricacion, lote, codigoMaterial, descripcion, medida, kilogramos, id) => firebase.firestore().collection('reporteDiario').doc(id).update({
-//     nombreOperario: nombre,
-//     codigoOperario: inputCodigoOperario,
-//     fecha: fecha,
-//     turno: turno,
-//     fechaRegistro: fechaRegistro,
-//     hora: hora,
-//     ordenFabricacion: ordenFabricacion,
-//     lote: lote,
-//     codigoMaterial: codigoMaterial,
-//     descripcion: descripcion,
-//     medida: medida,
-//     kg: kilogramos
-// });
 
 

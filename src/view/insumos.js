@@ -1,4 +1,4 @@
-import { getreporte, reporte } from '../firebase/controller-firestore.js'
+import { getReporte, reporte } from '../firebase/controller-firestore.js'
 import { reportTabla } from './tab-reporte.js';
 export default () => {
     const templateInsumo = document.createElement('section');
@@ -29,7 +29,7 @@ export default () => {
 </article>
 
 <article class="tab">
-<form class="row g-3">
+<form class="row g-3" id="form">
   <div class="col-md-6">
     <label for="inputNombreOperario" class="form-label">Nombre de Operario</label>
     <input type="text" name="inputNombreOperario" class="form-control" id="inputNombreOperario" autofocus required>
@@ -115,7 +115,7 @@ export default () => {
 </table>
     `;
     templateInsumo.innerHTML = viewInsumo;
-    const btn = templateInsumo.querySelector('#boton');
+     const formulario = templateInsumo.querySelector('#form');
     const nombre = templateInsumo.querySelector("#inputNombreOperario");
     const inputCodigoOperario = templateInsumo.querySelector("#inputCodigoOperario")
     const fecha = templateInsumo.querySelector("#inputFecha")
@@ -130,7 +130,7 @@ export default () => {
     const kilogramos = templateInsumo.querySelector("#inputKg")
 
   
-    btn.addEventListener('submit', (e) => {
+  formulario.addEventListener('submit', (e) => {
       e.preventDefault();
         reporte(
             nombre.value,
@@ -146,8 +146,6 @@ export default () => {
             medida.value,
             kilogramos.value,
         );
-        console.log(nombre.value);
-        console.log('boton');
 
         //limpiar valores 
             nombre.value = '',
@@ -165,10 +163,8 @@ export default () => {
     });
   const cuerpoTabla = templateInsumo.querySelector('#tabla-cuerpo');
 
-  getreporte((report) => {
-    console.log(cuerpoTabla);
-
-    console.log('hola');
+  getReporte((report) => {
+   
     cuerpoTabla.innerHTML = '';
     reportTabla(report, cuerpoTabla);
   });
