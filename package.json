@@ -1,0 +1,28 @@
+{
+  "name": "proceso-tara",
+  "version": "1.0.0",
+  "description": "Proceso-de-limpieza-de-Tara",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "serve src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorena-1204/Proceso-de-limpieza-de-Tara.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorena-1204/Proceso-de-limpieza-de-Tara/issues"
+  },
+  "homepage": "https://github.com/lorena-1204/Proceso-de-limpieza-de-Tara#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-jest": "^27.0.6",
+    "eslint": "^7.32.0",
+    "serve": "^12.0.0"
+  },
+  "dependencies": {}
+}

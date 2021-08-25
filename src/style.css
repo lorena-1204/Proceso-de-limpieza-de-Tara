@@ -1,0 +1,36 @@
+*{
+margin: 0;
+padding: 0;
+}
+body{
+  width: 100%;
+  height:100vh;
+}
+
+.tab{
+    padding: 20px;
+     border: 1px solid rgb(34,34,51);
+     
+    
+}
+ul.navbar-nav{
+    width:100%;
+    /* background-color: aqua; */
+   
+   
+}
+
+ul.navbar-nav li {
+   width:20%;
+   /* background-color: aqua; */
+}
+
+ul.navbar-nav li a {
+    font-size: 24px;
+    text-align: center;
+}
+ul.navbar-nav li a:hover{
+    /* background-color: rgb(160, 207, 255);
+    font-weight: bold; */
+
+}
